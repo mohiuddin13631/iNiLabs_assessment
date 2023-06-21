@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mvvm_getx/view/login/widgets/input_email_widget.dart';
-import 'package:mvvm_getx/view/login/widgets/input_password_widget.dart';
-import 'package:mvvm_getx/view/login/widgets/login_button_widget.dart';
+import 'package:mvvm_getx/view/search/widgets/input_search_widget.dart';
+import 'package:mvvm_getx/view/search/widgets/search_button_widget.dart';
+
 
 
 import '../../data/response/status.dart';
-import '../../view_models/controller/login/login_view_model.dart';
 
 
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+
+class SearchView extends StatefulWidget {
+  const SearchView({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SearchView> createState() => _SearchViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SearchViewState extends State<SearchView> {
 
-  final loginVM = Get.put(LoginViewModel()) ;
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -28,7 +27,7 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading:false,
-        title: Text('login'.tr),
+        title: Text('Serach'.tr),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -40,16 +39,13 @@ class _LoginViewState extends State<LoginView> {
               key: _formkey,
               child: Column(
                 children: [
-                  InputEmailWidget(),
-                  const SizedBox(height: 20,),
-                  InputPasswordWidget(),
-
+                  InputSearchWidget(),
                 ],
               ),
             ),
 
             const SizedBox(height: 40,),
-            LoginButtonWidget(formKey: _formkey,)
+            SearchButtonWidget(formKey: _formkey,)
           ],
         ),
       ),

@@ -6,6 +6,6 @@ class RouteName {
 
   static const String loginView = '/' ;
   static const String homeView = '/home_view' ;
-
+  static const String userDetailsView = '/user_details_view' ;
 
 }

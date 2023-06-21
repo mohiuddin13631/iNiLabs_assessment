@@ -12,7 +12,7 @@ import 'base_api_services.dart';
 
 class NetworkApiServices extends BaseApiServices {
 
-  final dio = Dio();
+  // final dio = Dio();
 
   @override
   Future<dynamic> getApi(String url)async{
@@ -23,8 +23,7 @@ class NetworkApiServices extends BaseApiServices {
 
     dynamic responseJson ;
     try {
-
-      final response = await http.get(Uri.parse(url)).timeout( const Duration(seconds: 10));
+      final response = await Dio().get(url);
       responseJson  = returnResponse(response) ;
     }on SocketException {
       throw InternetException('');
@@ -34,50 +33,26 @@ class NetworkApiServices extends BaseApiServices {
     }
     print(responseJson);
     return responseJson ;
-
   }
 
-
-  @override
-  Future<dynamic> postApi(var data , String url)async{
-
-    if (kDebugMode) {
-      print(url);
-      print(data);
-    }
-
-    dynamic responseJson ;
-    try {
-
-      final response = await http.post(Uri.parse(url),
-        body: data
-      ).timeout( const Duration(seconds: 10));
-      responseJson  = returnResponse(response) ;
-    }on SocketException {
-      throw InternetException('');
-    }on RequestTimeOut {
-      throw RequestTimeOut('');
-
-    }
-    if (kDebugMode) {
-      print(responseJson);
-    }
-    return responseJson ;
-
-  }
-
-  dynamic returnResponse(http.Response response){
+  dynamic returnResponse(dynamic response){
     switch(response.statusCode){
       case 200:
-        dynamic responseJson = jsonDecode(response.body);
+        dynamic responseJson = response.data;
         return responseJson ;
       case 400:
-        dynamic responseJson = jsonDecode(response.body);
+        dynamic responseJson = jsonDecode(response.data);
         return responseJson ;
 
       default :
         throw FetchDataException('Error accoured while communicating with server '+response.statusCode.toString()) ;
     }
+  }
+
+  @override
+  Future postApi(data, String url) {
+    // TODO: implement postApi
+    throw UnimplementedError();
   }
 
 }

@@ -1,29 +1,33 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:mvvm_getx/models/home/movie_list_model.dart';
-
+import 'package:mvvm_getx/models/user_details_model.dart';
+import 'package:mvvm_getx/models/user_details_model.dart';
 import '../../../data/response/status.dart';
-import '../../../models/home/user_list_model.dart';
-import '../../../repository/home_repository/hone_repository.dart';
+import '../../../repository/home_repository.dart';
 
 class HomeController extends GetxController {
 
   final _api = HomeRepository();
 
+  final searchController = TextEditingController().obs ;
+
+  final searchFocusNode = FocusNode().obs;
 
   final rxRequestStatus = Status.LOADING.obs ;
-  final moveList =MovieListModel().obs ;
+
+  final userDetails =UserDetailsModel().obs ;
   RxString error = ''.obs;
 
   void setRxRequestStatus(Status _value) => rxRequestStatus.value = _value ;
-  void setUserList(MovieListModel _value) => moveList.value = _value ;
+  void setUserList(UserDetailsModel _value) => userDetails.value = _value ;
   void setError(String _value) => error.value = _value ;
 
 
-  void movieListApi(){
+  void userDetailsApi(){
   //  setRxRequestStatus(Status.LOADING);
 
-    _api.movieListApi().then((value){
+    _api.userDetailsApi(searchController.value.text).then((value){
       setRxRequestStatus(Status.COMPLETED);
       setUserList(value);
     }).onError((error, stackTrace){
@@ -37,7 +41,7 @@ class HomeController extends GetxController {
 
       setRxRequestStatus(Status.LOADING);
 
-    _api.movieListApi().then((value){
+    _api.userDetailsApi(searchController.string).then((value){
       setRxRequestStatus(Status.COMPLETED);
       setUserList(value);
     }).onError((error, stackTrace){
