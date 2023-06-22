@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:mvvm_getx/res/routes/routes_name.dart';
+import 'package:mvvm_getx/view/home/user_repository_view.dart';
 
 
 import '../../view/home/tab_view.dart';
@@ -27,6 +28,12 @@ class AppRoutes {
     GetPage(
       name: RouteName.tabView,
       page: () => TabView() ,
+      transitionDuration: Duration(milliseconds: 250),
+      transition: Transition.leftToRightWithFade ,
+    ),
+    GetPage(
+      name: RouteName.userRepoView,
+      page: () => UserRepositoryView() ,
       transitionDuration: Duration(milliseconds: 250),
       transition: Transition.leftToRightWithFade ,
     ),

@@ -13,4 +13,9 @@ class AppUrl {
     return "https://api.github.com/users/$userName";
   }
 
+  static String gitUserRepoApi(String userName){
+    return "https://api.github.com/users/$userName/repos";
+  }
+
+
 }

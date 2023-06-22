@@ -54,7 +54,8 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin{
             child: Column(
               children: [
 
-                Flexible(
+                Expanded(
+                  flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TabBar(
@@ -80,17 +81,14 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin{
                     ),
                   ),
                 ),
-                Flexible(
-                  child: SizedBox(
-                    width: double.maxFinite,
-                    // height: double.maxFinite,
-                    child: TabBarView(
-                      controller: tabController,
-                      children: const [
-                        UserDetailsView(),
-                        UserRepositoryView()
-                      ],
-                    ),
+                Expanded(
+                  flex: 12,
+                  child: TabBarView(
+                    controller: tabController,
+                    children: const [
+                      UserDetailsView(),
+                      UserRepositoryView()
+                    ],
                   ),
                 )
               ],
