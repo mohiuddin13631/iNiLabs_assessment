@@ -18,12 +18,22 @@ class InputSearchWidget extends StatelessWidget {
 
       validator: (value){
         if(value!.isEmpty){
-          Utils.snackBar('Search', 'Enter user name');
+          Utils.snackBar('Search', 'user_hint'.tr,);
         }
       },
+      cursorColor: Theme.of(context).colorScheme.secondary,
       decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary),
+          borderRadius: BorderRadius.circular(15)
+        ),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).colorScheme.secondary,width: 1.5),
+              borderRadius: BorderRadius.circular(15),
+          ),
           hintText: 'user_hint'.tr,
-          border: OutlineInputBorder()
+          hintStyle: TextStyle(color:Theme.of(context).colorScheme.secondary),
+          border: OutlineInputBorder(),
       ),
     );
   }

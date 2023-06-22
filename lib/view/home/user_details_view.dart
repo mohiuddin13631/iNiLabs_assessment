@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mvvm_getx/res/components/round_button.dart';
 
 
 import '../../data/response/status.dart';
@@ -28,29 +29,27 @@ class _UserDetailsViewState extends State<UserDetailsView> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(onPressed: (){
-
-          }, icon: const Icon(Icons.logout))
-        ],
-      ),
       body: Obx((){
         switch(homeController.rxRequestStatus.value){
           case Status.LOADING:
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.secondary,));
           case Status.ERROR:
-            if(homeController.error.value =='No internet'){
-              return InterNetExceptionWidget(onPress: () {
-                homeController.refreshApi();
-              },
-              );
-            }else {
-              return GeneralExceptionWidget(onPress: (){
-                homeController.refreshApi();
-              });
-            }
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Not Found"),
+                  SizedBox(height: 10,),
+                  RoundButton(
+                    title: "Search again",
+                    width: 130,
+                    height: 40,
+                    onPress: () {
+                    Get.offAllNamed(RouteName.searchView);
+                  },)
+                ],
+              ),
+            );
           case Status.COMPLETED:
             return Column(
               children: [

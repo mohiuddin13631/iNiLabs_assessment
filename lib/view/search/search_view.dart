@@ -23,32 +23,40 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading:false,
-        title: Text('Serach'.tr),
+        title: Text('search'.tr),
+        elevation: 1,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Form(
-              key: _formkey,
-              child: Column(
-                children: [
-                  InputSearchWidget(),
-                ],
-              ),
-            ),
+      body:
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Form(
+                  key: _formkey,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width*.08),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InputSearchWidget(),
+                      ],
 
-            const SizedBox(height: 40,),
-            SearchButtonWidget(formKey: _formkey,)
-          ],
-        ),
-      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: size.height*.02,),
+                SearchButtonWidget(formKey: _formkey,)
+              ],
+            ),
+          ),
+
+          // const SizedBox(height: 10,),
+
     );
   }
 }

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mvvm_getx/res/theme/my_theme.dart';
 
-import '../colors/app_color.dart';
 
 
 
@@ -24,7 +24,7 @@ class _GeneralExceptionWidgetState extends State<GeneralExceptionWidget> {
       child: Column(
         children: [
           SizedBox(height: height * .15 ,),
-          Icon(Icons.cloud_off , color: AppColor.redColor,size: 50,),
+          Icon(Icons.cloud_off , color: Theme.of(context).colorScheme.error,size: 50,),
           Padding(
             padding: const EdgeInsets.only(top: 30),
             child: Center(child: Text('general_exception'.tr , textAlign: TextAlign.center,)),
@@ -36,7 +36,7 @@ class _GeneralExceptionWidgetState extends State<GeneralExceptionWidget> {
               height: 44,
               width: 160,
               decoration: BoxDecoration(
-                  color: AppColor.primaryColor ,
+                  color: Theme.of(context).colorScheme.onError,
                   borderRadius: BorderRadius.circular(50)
               ),
               child: Center(child: Text('Retry' , style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),)),

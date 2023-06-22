@@ -1,6 +1,8 @@
 
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class AppColor {
 
   static const Color blackColor = Color(0xff000000) ;
@@ -16,5 +18,6 @@ class AppColor {
   static const Color primaryTextColor =  Color(0xff000000);
   static const Color secondaryTextColor =  Color(0xff444648);
 
+  static Color backgroundColor = Colors.white;
 
 }

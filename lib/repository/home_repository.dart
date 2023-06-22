@@ -1,7 +1,8 @@
-import 'package:mvvm_getx/models/user_details_model.dart';
+
 import 'package:mvvm_getx/res/app_url/app_url.dart';
 
 import '../data/network/network_api_services.dart';
+import '../models/UserDetailsModel.dart';
 
 class HomeRepository {
 

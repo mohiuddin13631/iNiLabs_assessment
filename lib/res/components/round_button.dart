@@ -1,16 +1,17 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:mvvm_getx/res/theme/my_theme.dart';
 
 import '../colors/app_color.dart';
 
 
 class RoundButton extends StatelessWidget {
 
-  const RoundButton({
+  RoundButton({
     Key? key ,
-    this.buttonColor = AppColor.primaryButtonColor  ,
-    this.textColor = AppColor.primaryTextColor ,
+    this.buttonColor = Colors.green,
+    this.textColor = Colors.white ,
     required this.title ,
     required this.onPress ,
     this.width = 60 ,

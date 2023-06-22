@@ -1,9 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:mvvm_getx/models/user_details_model.dart';
-import 'package:mvvm_getx/models/user_details_model.dart';
 import '../../../data/response/status.dart';
+import '../../../models/UserDetailsModel.dart';
 import '../../../repository/home_repository.dart';
 
 class HomeController extends GetxController {
