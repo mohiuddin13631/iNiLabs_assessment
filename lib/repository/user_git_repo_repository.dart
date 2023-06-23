@@ -24,4 +24,21 @@ class UserGitRepoRepository {
     print("response: $response");
     return myList;
   }
+
+
+  Future<List<UserRepositoryModel>> sortedUserGitRepoApi(String userName,String sortOption) async{
+
+    UserRepositoryModel? userRepositoryModel;
+    List<UserRepositoryModel> myList = [];
+
+    dynamic response = await _apiService.getApi(AppUrl.sortedGitUserRepoApi(userName, sortOption));
+
+    for(var i in response){
+      userRepositoryModel = UserRepositoryModel.fromJson(i);
+      myList.add(userRepositoryModel);
+    }
+
+    print("response: $response");
+    return myList;
+  }
 }

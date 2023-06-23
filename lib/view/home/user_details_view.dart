@@ -28,6 +28,7 @@ class _UserDetailsViewState extends State<UserDetailsView> {
   }
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return  Scaffold(
       body: Obx((){
         switch(homeController.rxRequestStatus.value){
@@ -51,10 +52,46 @@ class _UserDetailsViewState extends State<UserDetailsView> {
               ),
             );
           case Status.COMPLETED:
-            return Column(
-              children: [
-                Text(homeController.userDetails.value.bio.toString())
-              ],
+            var userInfo = homeController.userDetails.value;
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 15),
+                    height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        image:DecorationImage(image: NetworkImage(userInfo.avatarUrl.toString()))
+                      ),
+                  ),
+                  SizedBox(height: size.height*.02,),
+                  Text(userInfo.name.toString(),style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                  Text(userInfo.login.toString(),style: TextStyle(fontSize: 16,color: Colors.black26)),
+                  SizedBox(height: size.height*.01,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.person),
+                      Text("${userInfo.followers} followers"),
+                      SizedBox(width: 5,),
+                      CircleAvatar(backgroundColor: Colors.black54,maxRadius: 7),
+                      SizedBox(width: 5,),
+                      Text("${userInfo.following} following"),
+                    ],
+                  ),
+                  SizedBox(height: 10,),
+                  Text("bio",style: TextStyle(fontSize: 20,color: Colors.black54),),
+                  SizedBox(height: size.height*.01,),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(homeController.userDetails.value.bio.toString(),style: TextStyle(fontSize: 16),),
+                  ),
+                  SizedBox(height: size.height*.05,)
+                ],
+              ),
             );
         }
       }),

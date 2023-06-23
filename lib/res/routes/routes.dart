@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:mvvm_getx/res/routes/routes_name.dart';
+import 'package:mvvm_getx/view/full_project_view.dart';
 import 'package:mvvm_getx/view/home/user_repository_view.dart';
 
 
@@ -34,6 +35,12 @@ class AppRoutes {
     GetPage(
       name: RouteName.userRepoView,
       page: () => UserRepositoryView() ,
+      transitionDuration: Duration(milliseconds: 250),
+      transition: Transition.leftToRightWithFade ,
+    ),
+    GetPage(
+      name: RouteName.fullProjectView,
+      page: () => FullProjectView() ,
       transitionDuration: Duration(milliseconds: 250),
       transition: Transition.leftToRightWithFade ,
     ),

@@ -3,15 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:mvvm_getx/models/UserRepositoryModel.dart';
 import 'package:mvvm_getx/repository/user_git_repo_repository.dart';
+import 'package:mvvm_getx/view_models/controller/home/home_view_models.dart';
 import '../../../data/response/status.dart';
 import '../../../models/UserDetailsModel.dart';
 import '../../../repository/home_repository.dart';
 
 class GitRepositoryViewModel extends GetxController {
 
-  final _api = UserGitRepoRepository();
+  var searchResult = Get.put(HomeController());
 
-  final searchController = TextEditingController().obs ;
+  final _api = UserGitRepoRepository();
+  // HomeController homeController = HomeController();
 
   final searchFocusNode = FocusNode().obs;
 
@@ -25,12 +27,18 @@ class GitRepositoryViewModel extends GetxController {
   void setUserList(List<UserRepositoryModel> _value) => userRepoList.value = _value ;
   void setError(String _value) => error.value = _value ;
 
+  RxString sortOption = "".obs;
+
+  RxBool isListView = true.obs;
+
+  RxString onTapProjectUrl = "".obs;
+
+  void setProjectUrl(String projectName){
+    onTapProjectUrl.value =  "https://github.com/${searchResult.searchController.value.text}/$projectName";
+  }
 
   void gitUserRepoApi(){
-    //  setRxRequestStatus(Status.LOADING);
-
-    // _api.userGirRepoApi(searchController.value.text).then((value){
-    _api.userGirRepoApi("mohiuddin13631").then((value){
+    _api.userGirRepoApi(searchResult.searchController.value.text).then((value){
       setRxRequestStatus(Status.COMPLETED);
       setUserList(value);
     }).onError((error, stackTrace){
@@ -39,4 +47,20 @@ class GitRepositoryViewModel extends GetxController {
 
     });
   }
+
+
+
+
+  void sortedGitRepoApi(){
+    _api.sortedUserGitRepoApi(searchResult.searchController.value.text, sortOption.value).then((value){
+      setRxRequestStatus(Status.COMPLETED);
+      setUserList(value);
+    }).onError((error, stackTrace){
+      setError(error.toString());
+      setRxRequestStatus(Status.ERROR);
+
+    });
+  }
+
+
 }

@@ -17,5 +17,7 @@ class AppUrl {
     return "https://api.github.com/users/$userName/repos";
   }
 
-
+  static String sortedGitUserRepoApi(String userName,String sortOption,){
+    return "https://api.github.com/users/$userName/repos?sort=$sortOption";
+  }
 }
