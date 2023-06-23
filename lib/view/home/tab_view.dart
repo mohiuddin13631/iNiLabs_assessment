@@ -34,6 +34,9 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin{
       },
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(onPressed: () {
+            Get.offAllNamed(RouteName.searchView);
+          }, icon: Icon(Icons.arrow_back)),
           // title: Text("GitHub",style: TextStyle(color: Theme.of(context).colorScheme.secondary),),
           title: Text("GitHub",),
           elevation: 0,
@@ -43,7 +46,10 @@ class _TabViewState extends State<TabView> with SingleTickerProviderStateMixin{
                 IconButton(onPressed: () {
                   themeController.isLight.value = !themeController.isLight.value;
                 }, icon: Icon(themeController.isLight.value == true ? Icons.wb_sunny : Icons.nights_stay))
-            )
+            ),
+            TextButton(onPressed: () {
+              Get.offAllNamed(RouteName.searchView);
+            }, child: Text("Search",style: TextStyle(color: Theme.of(context).colorScheme.secondary),))
 
           ],
         ),
